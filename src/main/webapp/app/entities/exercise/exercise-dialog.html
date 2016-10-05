@@ -1,0 +1,66 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myExerciseLabel" data-translate="mongoExApp.exercise.home.createOrEditLabel">Create or edit a Exercise</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.exercise.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.exercise.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="mongoExApp.exercise.number" for="field_number">Number</label>
+            <input type="number" class="form-control" name="number" id="field_number"
+                    ng-model="vm.exercise.number"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="mongoExApp.exercise.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                    ng-model="vm.exercise.description"
+                    required />
+            <div ng-show="editForm.description.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.description.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="mongoExApp.exercise.answer" for="field_answer">Answer</label>
+            <input type="text" class="form-control" name="answer" id="field_answer"
+                    ng-model="vm.exercise.answer"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="mongoExApp.exercise.hint" for="field_hint">Hint</label>
+            <input type="text" class="form-control" name="hint" id="field_hint"
+                    ng-model="vm.exercise.hint"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="mongoExApp.exercise.last_modified_date" for="field_last_modified_date">Last Modified Date</label>
+                <div class="input-group">
+                    <input id="field_last_modified_date" type="text" class="form-control" name="last_modified_date" datetime-picker="{{dateformat}}" ng-model="vm.exercise.last_modified_date" is-open="vm.datePickerOpenStatus.last_modified_date"
+                      />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('last_modified_date')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

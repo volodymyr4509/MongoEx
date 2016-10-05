@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span data-translate="mongoExApp.exercise.detail.title">Exercise</span> {{vm.exercise.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="mongoExApp.exercise.number">Number</span></dt>
+        <dd>
+            <span>{{vm.exercise.number}}</span>
+        </dd>
+        <dt><span data-translate="mongoExApp.exercise.description">Description</span></dt>
+        <dd>
+            <span>{{vm.exercise.description}}</span>
+        </dd>
+        <dt><span data-translate="mongoExApp.exercise.answer">Answer</span></dt>
+        <dd>
+            <span>{{vm.exercise.answer}}</span>
+        </dd>
+        <dt><span data-translate="mongoExApp.exercise.hint">Hint</span></dt>
+        <dd>
+            <span>{{vm.exercise.hint}}</span>
+        </dd>
+        <dt><span data-translate="mongoExApp.exercise.last_modified_date">Last Modified Date</span></dt>
+        <dd>
+            <span>{{vm.exercise.last_modified_date | date:'medium'}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="exercise-detail.edit({id:vm.exercise.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
