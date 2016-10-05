@@ -1,5 +1,26 @@
 {
-  "exercise": {
-    "title": "Do some exercise!"
-  }
+    "mongoExApp": {
+        "exercise" : {
+            "home": {
+                "title": "Exercises",
+                "createLabel": "Create a new Exercise",
+                "createOrEditLabel": "Create or edit a Exercise",
+                "search": "Search for Exercise"
+            },
+            "created": "A new Exercise is created with identifier {{ param }}",
+            "updated": "A Exercise is updated with identifier {{ param }}",
+            "deleted": "A Exercise is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Exercise {{ id }}?"
+            },
+            "detail": {
+                "title": "Exercise"
+            },
+            "number": "Number",
+            "description": "Description",
+            "answer": "Answer",
+            "hint": "Hint",
+            "last_modified_date": "Last Modified Date"
+        }
+    }
 }

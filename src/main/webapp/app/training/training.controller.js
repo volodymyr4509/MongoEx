@@ -3,11 +3,11 @@
 
     angular
         .module('mongoExApp')
-        .controller('ExerciseController', ExerciseController);
+        .controller('TrainingController', TrainingController);
 
-    ExerciseController.$inject = ['$scope', 'Principal', 'LoginService', '$state'];
+    TrainingController.$inject = ['$scope', 'Principal', 'LoginService', '$state'];
 
-    function ExerciseController ($scope, Principal, LoginService, $state) {
+    function TrainingController ($scope, Principal, LoginService, $state) {
         var vm = this;
 
         vm.account = null;
