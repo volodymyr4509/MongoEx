@@ -1,10 +1,26 @@
 <div ng-cloak>
     <div class="row">
         <div class="col-md-4">
-
+            <textarea></textarea>
         </div>
         <div class="col-md-8">
             <h1 data-translate="training.title">Exercise!</h1>
+        </div>
+        <div>
+
+            <table>
+                <tr ng-repeat="exercise in vm.exercises track by exercise.id">
+                    <td><a ui-sref="exercise-detail({id:exercise.id})">{{exercise.id}}</a></td>
+                    <td>{{exercise.number}}</td>
+                    <td>{{exercise.description}}</td>
+                    <td>{{exercise.answer}}</td>
+                    <td>{{exercise.hint}}</td>
+                    <td>{{exercise.last_modified_date | date:'medium'}}</td>
+
+                </tr>
+                </tbody>
+            </table>
+
         </div>
     </div>
 </div>
