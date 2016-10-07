@@ -24,13 +24,8 @@ public interface ExerciseService {
      */
     List<Exercise> findAll();
 
-    /**
-     *  Get the "id" exercise.
-     *
-     *  @param id the id of the entity
-     *  @return the entity
-     */
-    Exercise findOne(String id);
+
+    Exercise findOneByNumber(int number);
 
     /**
      *  Delete the "id" exercise.

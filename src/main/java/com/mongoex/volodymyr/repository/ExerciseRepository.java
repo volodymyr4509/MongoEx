@@ -10,4 +10,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 @SuppressWarnings("unused")
 public interface ExerciseRepository extends MongoRepository<Exercise,String> {
 
+
+    Exercise findByNumber(int number);
+
 }

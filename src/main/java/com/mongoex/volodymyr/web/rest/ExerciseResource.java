@@ -92,18 +92,32 @@ public class ExerciseResource {
     }
 
     /**
-     * GET  /exercises/:id : get the "id" exercise.
+     * GET  /exercises/id/:id : get the "id" exercise.
      *
      * @param id the id of the exercise to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the exercise, or with status 404 (Not Found)
      */
-    @RequestMapping(value = "/exercises/{id}",
+//    @RequestMapping(value = "/exercises/id/{id}",
+//        method = RequestMethod.GET,
+//        produces = MediaType.APPLICATION_JSON_VALUE)
+//    @Timed
+//    public ResponseEntity<Exercise> getExerciseById(@PathVariable String id) {
+//        log.debug("REST request to get Exercise : {}", id);
+//        Exercise exercise = exerciseService.findOneById(id);
+//        return Optional.ofNullable(exercise)
+//            .map(result -> new ResponseEntity<>(
+//                result,
+//                HttpStatus.OK))
+//            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+//    }
+
+    @RequestMapping(value = "/exercises/{number}",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Exercise> getExercise(@PathVariable String id) {
-        log.debug("REST request to get Exercise : {}", id);
-        Exercise exercise = exerciseService.findOne(id);
+    public ResponseEntity<Exercise> getExerciseByNumber(@PathVariable int number) {
+        log.debug("REST request to get Exercise : {}", number);
+        Exercise exercise = exerciseService.findOneByNumber(number);
         return Optional.ofNullable(exercise)
             .map(result -> new ResponseEntity<>(
                 result,

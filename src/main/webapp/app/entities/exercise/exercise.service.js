@@ -7,10 +7,13 @@
     Exercise.$inject = ['$resource', 'DateUtils'];
 
     function Exercise ($resource, DateUtils) {
-        var resourceUrl =  'api/exercises/:id';
+        var resourceUrl =  'api/exercises/:number';
 
         return $resource(resourceUrl, {}, {
-            'query': { method: 'GET', isArray: true},
+            'query': {
+                method: 'GET',
+                isArray: true
+            },
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
@@ -21,7 +24,9 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': {
+                method:'PUT'
+            }
         });
     }
 })();

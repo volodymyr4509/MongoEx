@@ -51,9 +51,15 @@ public class ExerciseServiceImpl implements ExerciseService{
      *  @param id the id of the entity
      *  @return the entity
      */
-    public Exercise findOne(String id) {
-        log.debug("Request to get Exercise : {}", id);
+    public Exercise findOneById(String id) {
+        log.debug("Request to get Exercise by id: {}", id);
         Exercise exercise = exerciseRepository.findOne(id);
+        return exercise;
+    }
+
+    public Exercise findOneByNumber(int number) {
+        log.debug("Request to get Exercise by number : {}", number);
+        Exercise exercise = exerciseRepository.findByNumber(number);
         return exercise;
     }
 
