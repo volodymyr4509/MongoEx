@@ -24,6 +24,7 @@ public interface ExerciseService {
      */
     List<Exercise> findAll();
 
+    Exercise findOneById(String id);
 
     Exercise findOneByNumber(int number);
 

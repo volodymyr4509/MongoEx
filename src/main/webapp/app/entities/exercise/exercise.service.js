@@ -7,7 +7,7 @@
     Exercise.$inject = ['$resource', 'DateUtils'];
 
     function Exercise ($resource, DateUtils) {
-        var resourceUrl =  'api/exercises/:number';
+        var resourceUrl =  'api/exercises/:id';
 
         return $resource(resourceUrl, {}, {
             'query': {

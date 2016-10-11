@@ -6,7 +6,6 @@ import com.mongoex.volodymyr.service.ExerciseService;
 import com.mongoex.volodymyr.web.rest.util.HeaderUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -91,33 +90,28 @@ public class ExerciseResource {
         return exerciseService.findAll();
     }
 
-    /**
-     * GET  /exercises/id/:id : get the "id" exercise.
-     *
-     * @param id the id of the exercise to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the exercise, or with status 404 (Not Found)
-     */
-//    @RequestMapping(value = "/exercises/id/{id}",
-//        method = RequestMethod.GET,
-//        produces = MediaType.APPLICATION_JSON_VALUE)
-//    @Timed
-//    public ResponseEntity<Exercise> getExerciseById(@PathVariable String id) {
-//        log.debug("REST request to get Exercise : {}", id);
-//        Exercise exercise = exerciseService.findOneById(id);
-//        return Optional.ofNullable(exercise)
-//            .map(result -> new ResponseEntity<>(
-//                result,
-//                HttpStatus.OK))
-//            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-//    }
 
-    @RequestMapping(value = "/exercises/{number}",
+    @RequestMapping(value = "/exercises/number/{number}",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Exercise> getExerciseByNumber(@PathVariable int number) {
+    public ResponseEntity<Exercise> getExerciseById(@PathVariable int number) {
         log.debug("REST request to get Exercise : {}", number);
         Exercise exercise = exerciseService.findOneByNumber(number);
+        return Optional.ofNullable(exercise)
+            .map(result -> new ResponseEntity<>(
+                result,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @RequestMapping(value = "/exercises/{id}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Exercise> getExerciseByNumber(@PathVariable String id) {
+        log.debug("REST request to get Exercise : {}", id);
+        Exercise exercise = exerciseService.findOneById(id);
         return Optional.ofNullable(exercise)
             .map(result -> new ResponseEntity<>(
                 result,
