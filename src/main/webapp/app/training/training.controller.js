@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -7,7 +7,7 @@
 
     TrainingController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'Exercise'];
 
-    function TrainingController ($scope, Principal, LoginService, $state, Exercise) {
+    function TrainingController($scope, Principal, LoginService, $state, Exercise) {
         var vm = this;
 
         vm.account = null;
@@ -16,7 +16,13 @@
         vm.register = register;
         vm.exercises = [];
 
-        $scope.$on('authenticationSuccess', function() {
+        vm.showHint = false;
+        $scope.showHintButtonText = 'Show hint';
+
+
+
+
+        $scope.$on('authenticationSuccess', function () {
             getAccount();
         });
 
@@ -24,20 +30,30 @@
         loadAllExercises();
 
         function getAccount() {
-            Principal.identity().then(function(account) {
+            Principal.identity().then(function (account) {
                 vm.account = account;
                 vm.isAuthenticated = Principal.isAuthenticated;
             });
         }
-        function register () {
+
+        function register() {
             $state.go('register');
         }
 
         function loadAllExercises() {
-            Exercise.query(function(result) {
+            Exercise.query(function (result) {
                 vm.exercises = result;
                 console.log(result);
             });
+        }
+
+        $scope.toggleHintVisibility = function() {
+            $scope.showHint = !$scope.showHint;
+            if($scope.showHint){
+                $scope.showHintButtonText = 'Hide hint';
+            }else{
+                $scope.showHintButtonText = 'Show hint';
+            }
         }
     }
 })();

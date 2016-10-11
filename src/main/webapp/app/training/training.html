@@ -1,11 +1,12 @@
 <div ng-cloak>
-    <div ng-repeat="exercise in vm.exercises track by exercise.number">
-        <div class="row">
-            <div class="text-center">
-                <h1 data-translate="training.title">Exercise!</h1>
-            </div>
+    <div class="row">
+        <div class="text-center">
+            <h1 data-translate="training.title">Exercise!</h1>
         </div>
-        <div class="row">
+    </div>
+    <div ng-repeat="exercise in vm.exercises track by exercise.number">
+
+        <div class="row">imp
             <div class="col-md-4">
                 <p1>{{exercise.number}}.{{exercise.description}}</p1>
             </div>
@@ -15,26 +16,15 @@
         </div>
 
         <div class="row">
-            <div>
-
-                <table>
-                    <!--<tr ng-repeat="exercise in vm.exercises track by exercise.number">-->
-                        <!--<td><a ui-sref="exercise-detail({number:exercise.number})">{{exercise.number}}</a></td>-->
-                        <!--<td>{{exercise.number}}</td>-->
-
-
-                    <!--</tr>-->
-                    <!--<tr>-->
-                        <!--<td>{{exercise.description}}</td>-->
-                        <!--<td>{{exercise.answer}}</td>-->
-                        <!--<td>{{exercise.hint}}</td>-->
-                        <!--<td>{{exercise.last_modified_date | date:'medium'}}</td>-->
-                    <!--</tr>-->
-
-                    <!--</tbody>-->
-                </table>
-
+            <div class="col-md-4">
+                <div>
+                    <button class="btn btn-primary" ng-click="toggleHintVisibility()">{{showHintButtonText}}</button>
+                </div>
+                <div class="animate-hide bg-info" ng-show="showHint">
+                    {{exercise.hint}}
+                </div>
             </div>
+
         </div>
     </div>
 
