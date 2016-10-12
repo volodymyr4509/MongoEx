@@ -9,7 +9,6 @@
 
     function TrainingController($scope, Principal, LoginService, $state, Exercise) {
         var vm = this;
-
         vm.account = null;
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
@@ -17,10 +16,6 @@
         vm.exercises = [];
 
         vm.showHint = false;
-        $scope.showHintButtonText = 'Show hint';
-
-
-
 
         $scope.$on('authenticationSuccess', function () {
             getAccount();
@@ -43,17 +38,9 @@
         function loadAllExercises() {
             Exercise.query(function (result) {
                 vm.exercises = result;
-                console.log(result);
             });
         }
 
-        $scope.toggleHintVisibility = function() {
-            $scope.showHint = !$scope.showHint;
-            if($scope.showHint){
-                $scope.showHintButtonText = 'Hide hint';
-            }else{
-                $scope.showHintButtonText = 'Show hint';
-            }
-        }
+
     }
 })();
