@@ -20,7 +20,7 @@
                 <tr>
                     <th><span data-translate="global.field.id">ID</span></th>
                     <th><span data-translate="mongoExApp.query.userId">User Id</span></th>
-                    <th><span data-translate="mongoExApp.query.exerciseId">Exercise Id</span></th>
+                    <th><span data-translate="mongoExApp.query.exerciseNumber">Exercise Id</span></th>
                     <th><span data-translate="mongoExApp.query.queryBody">Query Body</span></th>
                     <th><span data-translate="mongoExApp.query.executionTime">Execution Time</span></th>
                     <th><span data-translate="mongoExApp.query.result">Result</span></th>
@@ -31,7 +31,7 @@
                 <tr ng-repeat="query in vm.queries track by query.id">
                     <td><a ui-sref="query-detail({id:query.id})">{{query.id}}</a></td>
                     <td>{{query.userId}}</td>
-                    <td>{{query.exerciseId}}</td>
+                    <td>{{query.exerciseNumber}}</td>
                     <td>{{query.queryBody}}</td>
                     <td>{{query.executionTime | date:'medium'}}</td>
                     <td>{{query.result}}</td>

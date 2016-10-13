@@ -120,7 +120,7 @@ public class QueryResourceIntTest {
         assertThat(queries).hasSize(databaseSizeBeforeCreate + 1);
         Query testQuery = queries.get(queries.size() - 1);
         assertThat(testQuery.getUserId()).isEqualTo(DEFAULT_USER_ID);
-        assertThat(testQuery.getExerciseId()).isEqualTo(DEFAULT_EXERCISE_ID);
+        assertThat(testQuery.getExerciseNumber()).isEqualTo(DEFAULT_EXERCISE_ID);
         assertThat(testQuery.getQueryBody()).isEqualTo(DEFAULT_QUERY_BODY);
         assertThat(testQuery.getExecutionTime()).isEqualTo(DEFAULT_EXECUTION_TIME);
         assertThat(testQuery.getResult()).isEqualTo(DEFAULT_RESULT);
@@ -193,7 +193,7 @@ public class QueryResourceIntTest {
         assertThat(queries).hasSize(databaseSizeBeforeUpdate);
         Query testQuery = queries.get(queries.size() - 1);
         assertThat(testQuery.getUserId()).isEqualTo(UPDATED_USER_ID);
-        assertThat(testQuery.getExerciseId()).isEqualTo(UPDATED_EXERCISE_ID);
+        assertThat(testQuery.getExerciseNumber()).isEqualTo(UPDATED_EXERCISE_ID);
         assertThat(testQuery.getQueryBody()).isEqualTo(UPDATED_QUERY_BODY);
         assertThat(testQuery.getExecutionTime()).isEqualTo(UPDATED_EXECUTION_TIME);
         assertThat(testQuery.getResult()).isEqualTo(UPDATED_RESULT);

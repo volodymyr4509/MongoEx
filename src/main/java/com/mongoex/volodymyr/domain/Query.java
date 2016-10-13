@@ -23,8 +23,8 @@ public class Query implements Serializable {
     @Field("user_id")
     private String userId;
 
-    @Field("exercise_id")
-    private String exerciseId;
+    @Field("exercise_number")
+    private String exerciseNumber;
 
     @Field("query_body")
     private String queryBody;
@@ -56,17 +56,17 @@ public class Query implements Serializable {
         this.userId = userId;
     }
 
-    public String getExerciseId() {
-        return exerciseId;
+    public String getExerciseNumber() {
+        return exerciseNumber;
     }
 
     public Query exerciseId(String exerciseId) {
-        this.exerciseId = exerciseId;
+        this.exerciseNumber = exerciseId;
         return this;
     }
 
-    public void setExerciseId(String exerciseId) {
-        this.exerciseId = exerciseId;
+    public void setExerciseNumber(String exerciseNumber) {
+        this.exerciseNumber = exerciseNumber;
     }
 
     public String getQueryBody() {
@@ -133,7 +133,7 @@ public class Query implements Serializable {
         return "Query{" +
             "id=" + id +
             ", userId='" + userId + "'" +
-            ", exerciseId='" + exerciseId + "'" +
+            ", exerciseNumber='" + exerciseNumber + "'" +
             ", queryBody='" + queryBody + "'" +
             ", executionTime='" + executionTime + "'" +
             ", result='" + result + "'" +
