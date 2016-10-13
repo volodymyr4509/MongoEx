@@ -5,16 +5,16 @@
         .module('mongoExApp')
         .controller('TrainingExerciseController', TrainingExerciseController);
 
-    TrainingExerciseController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'TrainingExercise'];
+    TrainingExerciseController.$inject = ['$scope', 'Principal', 'LoginService', '$state', '$stateParams', 'TrainingExercise'];
 
-    function TrainingExerciseController($scope, Principal, LoginService, $state, TrainingExercise) {
+    function TrainingExerciseController($scope, Principal, LoginService, $state, $stateParams, TrainingExercise) {
         var vm = this;
-console.log('TrainingExerciseController execution');
+
         vm.account = null;
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
         vm.register = register;
-        $scope.exercise = null;
+        vm.exercise = initExercise($stateParams.number);
 
         $scope.showHintButtonText = 'Show hint';
 
@@ -23,7 +23,6 @@ console.log('TrainingExerciseController execution');
         });
 
         getAccount();
-        loadExercise();
 
         function getAccount() {
             Principal.identity().then(function (account) {
@@ -36,9 +35,10 @@ console.log('TrainingExerciseController execution');
             $state.go('register');
         }
 
-        function loadExercise() {
-            console.log("loadExercise");
-            $scope.exercise = TrainingExercise.query();
+        function initExercise(number) {
+            TrainingExercise.query({number: number}, function (result) {
+                vm.exercise = result;
+            })
         }
 
         $scope.toggleHintVisibility = function () {

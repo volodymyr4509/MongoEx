@@ -45,7 +45,7 @@
                 },
                 resolve: {
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('exercise');
+                        $translatePartialLoader.addPart('training');
                         return $translate.refresh();
                     }]
                 }

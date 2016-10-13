@@ -1,17 +1,22 @@
 <div ng-cloak>
     <div class="row">
-        <div class="text-center">
+        <div class="col-md-1">
+            <button class="btn btn-primary" ui-sref="training">Back</button>
+        </div>
+        <div class="text-center col-md-11">
             <h1 data-translate="training.title">Exercise!</h1>
         </div>
+
     </div>
-Hello training exercise
+
+
     <div>
         <div class="row">
             <div class="col-md-4">
-                <p1>{{vm.exercise.id}}</p1>
+                <p class="text-large">{{vm.exercise.number}}.{{vm.exercise.description}}</p>
             </div>
-            <div>
-                <textarea placeholder="Query..." class="col-md-8"></textarea>
+            <div class="col-md-8">
+                <textarea placeholder="Query..." class="col-md-8 match-parent"></textarea>
             </div>
         </div>
 
@@ -21,13 +26,11 @@ Hello training exercise
                     <button class="btn btn-primary" ng-click="toggleHintVisibility()">{{showHintButtonText}}</button>
                 </div>
                 <div class="animate-hide bg-info" ng-show="showHint">
-                    {{exercise.hint}}
+                    {{vm.exercise.hint}}
                 </div>
             </div>
             <div class="col-md-8">
-                <div>
-                    <button class="btn btn-primary" ui-sref="training">Back</button>
-                </div>
+
                 <div class="animate-hide bg-info" ng-show="showHint">
 
                 </div>
