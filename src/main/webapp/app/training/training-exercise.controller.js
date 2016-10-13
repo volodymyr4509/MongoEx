@@ -9,16 +9,13 @@
 
     function TrainingExerciseController($scope, Principal, LoginService, $state, TrainingExercise) {
         var vm = this;
-
+console.log('TrainingExerciseController execution');
         vm.account = null;
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
         vm.register = register;
-        $scope.exercise;
-        $scope.number = 2;
+        $scope.exercise = null;
 
-
-        vm.showHint = false;
         $scope.showHintButtonText = 'Show hint';
 
         $scope.$on('authenticationSuccess', function () {
@@ -40,15 +37,15 @@
         }
 
         function loadExercise() {
-            console.log("training exercise controller. load exercise");
+            console.log("loadExercise");
             $scope.exercise = TrainingExercise.query();
         }
 
-        $scope.toggleHintVisibility = function() {
+        $scope.toggleHintVisibility = function () {
             $scope.showHint = !$scope.showHint;
-            if($scope.showHint){
+            if ($scope.showHint) {
                 $scope.showHintButtonText = 'Hide hint';
-            }else{
+            } else {
                 $scope.showHintButtonText = 'Show hint';
             }
         }

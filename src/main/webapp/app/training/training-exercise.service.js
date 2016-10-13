@@ -5,33 +5,19 @@
         .module('mongoExApp')
         .factory('TrainingExercise', TrainingExercise);
 
-    TrainingExercise.$inject = ['$resource'];
+    TrainingExercise.$inject = ['$resource', '$stateParams'];
 
-    function TrainingExercise($resource) {
-        console.log("TrainingExercise service called");
+    function TrainingExercise($resource, $stateParams) {
+        var resourceUrl = 'api/exercises/number/' + $stateParams.number;
+        console.log("Make a request: " + resourceUrl);
 
-        //var service = {
-        //    getEx: getEx
-        //}
-
-        return $resource('api/exercises/number/1', {}, {
+        return $resource(resourceUrl, {}, {
             'query': {
                 method: 'GET',
                 isArray: false
-            },
+            }
         });
 
-        //function getEx(){
-        //    console.log("getEx() called");
-        //    var result = $resource('/exercises/number/{number}', {}, {
-        //        'query': {
-        //        method: 'GET',
-        //        isArray: false
-        //    },
-        //    });
-        //
-        //    return result;
-        //}
 
     }
 })();

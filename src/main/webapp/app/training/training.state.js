@@ -42,26 +42,13 @@
                         controller: 'TrainingExerciseController',
                         controllerAs: 'vm'
                     }
+                },
+                resolve: {
+                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                        $translatePartialLoader.addPart('exercise');
+                        return $translate.refresh();
+                    }]
                 }
-                //,
-                //resolve: {
-                    //translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    //    $translatePartialLoader.addPart('exercise');
-                    //    return $translate.refresh();
-                    //}],
-                    //entity: ['$stateParams', 'Exercise', function($stateParams, TrainingExercise) {
-                    //    return TrainingExercise.get({number : $stateParams.number}).$promise;
-                    //}]
-                    //,
-                    //previousState: ["$state", function ($state) {
-                    //    var currentStateData = {
-                    //        name: $state.current.name || 'exercise',
-                    //        params: $state.params,
-                    //        url: $state.href($state.current.name, $state.params)
-                    //    };
-                    //    return currentStateData;
-                    //}]
-                //}
 
             });
     }
