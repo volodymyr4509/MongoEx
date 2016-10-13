@@ -1,0 +1,26 @@
+{
+    "mongoExApp": {
+        "query" : {
+            "home": {
+                "title": "Queries",
+                "createLabel": "Create a new Query",
+                "createOrEditLabel": "Create or edit a Query",
+                "search": "Search for Query"
+            },
+            "created": "A new Query is created with identifier {{ param }}",
+            "updated": "A Query is updated with identifier {{ param }}",
+            "deleted": "A Query is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Query {{ id }}?"
+            },
+            "detail": {
+                "title": "Query"
+            },
+            "userId": "User Id",
+            "exerciseId": "Exercise Id",
+            "queryBody": "Query Body",
+            "executionTime": "Execution Time",
+            "result": "Result"
+        }
+    }
+}

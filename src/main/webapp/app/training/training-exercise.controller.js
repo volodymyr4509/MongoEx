@@ -15,6 +15,8 @@
         vm.login = LoginService.open;
         vm.register = register;
         vm.exercise = initExercise($stateParams.number);
+        vm.solution = {a: 1, b: 2, c: 3};
+        vm.queryResult = {e:4, d:5, f:6};
 
         $scope.showHintButtonText = 'Show hint';
 
@@ -40,6 +42,10 @@
                 vm.exercise = result;
             })
         }
+
+        //function sendQuery() {
+        //    TrainingExercise
+        //}
 
         $scope.toggleHintVisibility = function () {
             $scope.showHint = !$scope.showHint;

@@ -13,6 +13,10 @@
             'query': {
                 method: 'GET',
                 isArray: false
+            },
+            'sendQuery': {
+                method: 'POST',
+                url: 'api/query/execute'
             }
         });
 

@@ -3,12 +3,13 @@
         <div class="col-md-1">
             <button class="btn btn-primary" ui-sref="training">Back</button>
         </div>
-        <div class="text-center col-md-11">
-            <h1 data-translate="training.title">Exercise!</h1>
+        <div class="text-center col-md-10">
+            <p class="text-huge" data-translate="training.title">Exercise!</p>
         </div>
-
+        <div class="col-md-1">
+            <button class="btn btn-info">Run Query</button>
+        </div>
     </div>
-
 
     <div>
         <div class="row">
@@ -16,7 +17,8 @@
                 <p class="text-large">{{vm.exercise.number}}.{{vm.exercise.description}}</p>
             </div>
             <div class="col-md-8">
-                <textarea placeholder="Query..." class="col-md-8 match-parent"></textarea>
+                <textarea rows="20" placeholder="Query..."
+                          class="col-md-8 match-parent">{{vm.solution | json}}</textarea>
             </div>
         </div>
 
@@ -31,12 +33,13 @@
             </div>
             <div class="col-md-8">
 
-                <div class="animate-hide bg-info" ng-show="showHint">
-
+                <div>
+                    <pre>{{vm.queryResult | json}}</pre>
                 </div>
             </div>
 
         </div>
     </div>
+
 
 </div>

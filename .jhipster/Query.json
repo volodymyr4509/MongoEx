@@ -1,0 +1,30 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "userId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "exerciseId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "queryBody",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "executionTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "result",
+            "fieldType": "String"
+        }
+    ],
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "query",
+    "pagination": "no"
+}

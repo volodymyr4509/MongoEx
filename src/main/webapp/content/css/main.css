@@ -378,6 +378,9 @@ Social Buttons
 .text-large {
     font-size: large;
 }
+.text-huge {
+    font-size: xx-large;
+}
 
 .match-parent {
     width: 100%;
