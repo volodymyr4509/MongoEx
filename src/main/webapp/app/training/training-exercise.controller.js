@@ -15,8 +15,9 @@
         vm.login = LoginService.open;
         vm.register = register;
         vm.exercise = initExercise($stateParams.number);
-        vm.solution = {a: 1, b: 2, c: 3};
-        vm.queryResult = {e:4, d:5, f:6};
+        vm.solution = {"queryBody":"db.version()"};
+        vm.queryResult = {};
+        $scope.saveQuery = saveQuery;
 
         $scope.showHintButtonText = 'Show hint';
 
@@ -43,9 +44,9 @@
             })
         }
 
-        //function sendQuery() {
-        //    TrainingExercise
-        //}
+        function saveQuery() {
+            vm.queryResult = TrainingExercise.save(vm.solution);
+        }
 
         $scope.toggleHintVisibility = function () {
             $scope.showHint = !$scope.showHint;

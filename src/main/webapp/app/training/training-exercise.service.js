@@ -14,9 +14,9 @@
                 method: 'GET',
                 isArray: false
             },
-            'sendQuery': {
+            'save': {
                 method: 'POST',
-                url: 'api/query/execute'
+                url: 'api/queries/'
             }
         });
 

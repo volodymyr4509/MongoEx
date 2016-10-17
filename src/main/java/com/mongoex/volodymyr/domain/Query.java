@@ -1,5 +1,7 @@
 package com.mongoex.volodymyr.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -29,8 +31,11 @@ public class Query implements Serializable {
     @Field("query_body")
     private String queryBody;
 
-    @Field("execution_time")
-    private ZonedDateTime executionTime;
+    @CreatedDate
+    @Field("created_date")
+    @JsonIgnore
+    private ZonedDateTime executionTime = ZonedDateTime.now();
+
 
     @Field("result")
     private String result;
