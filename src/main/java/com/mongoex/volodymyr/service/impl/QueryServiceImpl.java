@@ -1,8 +1,9 @@
 package com.mongoex.volodymyr.service.impl;
 
-import com.mongoex.volodymyr.service.QueryService;
 import com.mongoex.volodymyr.domain.Query;
+import com.mongoex.volodymyr.repository.QueryRepo;
 import com.mongoex.volodymyr.repository.QueryRepository;
+import com.mongoex.volodymyr.service.QueryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -14,12 +15,15 @@ import java.util.List;
  * Service Implementation for managing Query.
  */
 @Service
-public class QueryServiceImpl implements QueryService{
+public class QueryServiceImpl implements QueryService {
 
     private final Logger log = LoggerFactory.getLogger(QueryServiceImpl.class);
-    
+
     @Inject
     private QueryRepository queryRepository;
+
+    @Inject
+    private QueryRepo queryRepo;
 
     /**
      * Save a query.
@@ -29,14 +33,17 @@ public class QueryServiceImpl implements QueryService{
      */
     public Query save(Query query) {
         log.debug("Request to save Query : {}", query);
+        String execute = queryRepo.execute(query);
+        log.error("Execution result: " + execute);
+        query.setResult(execute);
         Query result = queryRepository.save(query);
         return result;
     }
 
     /**
-     *  Get all the queries.
-     *  
-     *  @return the list of entities
+     * Get all the queries.
+     *
+     * @return the list of entities
      */
     public List<Query> findAll() {
         log.debug("Request to get all Queries");
@@ -46,10 +53,10 @@ public class QueryServiceImpl implements QueryService{
     }
 
     /**
-     *  Get one query by id.
+     * Get one query by id.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
     public Query findOne(String id) {
         log.debug("Request to get Query : {}", id);
@@ -58,9 +65,9 @@ public class QueryServiceImpl implements QueryService{
     }
 
     /**
-     *  Delete the  query by id.
+     * Delete the  query by id.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     public void delete(String id) {
         log.debug("Request to delete Query : {}", id);

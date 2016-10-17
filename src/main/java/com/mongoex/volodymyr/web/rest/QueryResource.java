@@ -6,17 +6,17 @@ import com.mongoex.volodymyr.service.QueryService;
 import com.mongoex.volodymyr.web.rest.util.HeaderUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * REST controller for managing Query.
@@ -26,7 +26,7 @@ import java.util.Optional;
 public class QueryResource {
 
     private final Logger log = LoggerFactory.getLogger(QueryResource.class);
-        
+
     @Inject
     private QueryService queryService;
 
@@ -38,18 +38,21 @@ public class QueryResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @RequestMapping(value = "/queries",
-        method = RequestMethod.POST,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+            method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Query> createQuery(@RequestBody Query query) throws URISyntaxException {
         log.debug("REST request to save Query : {}", query);
         if (query.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("query", "idexists", "A new query cannot already have an ID")).body(null);
         }
+
         Query result = queryService.save(query);
+
+
         return ResponseEntity.created(new URI("/api/queries/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert("query", result.getId().toString()))
-            .body(result);
+                .headers(HeaderUtil.createEntityCreationAlert("query", result.getId().toString()))
+                .body(result);
     }
 
     /**
@@ -82,8 +85,8 @@ public class QueryResource {
      * @return the ResponseEntity with status 200 (OK) and the list of queries in body
      */
     @RequestMapping(value = "/queries",
-        method = RequestMethod.GET,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public List<Query> getAllQueries() {
         log.debug("REST request to get all Queries");
