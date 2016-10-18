@@ -17,8 +17,7 @@
                 <p class="text-large">{{vm.exercise.number}}.{{vm.exercise.description}}</p>
             </div>
             <div class="col-md-8">
-                <textarea rows="20" placeholder="Query..."
-                          class="col-md-8 match-parent">{{vm.solution | json}}</textarea>
+                <textarea rows="20" placeholder="Query..." class="col-md-8 match-parent" ng-model="vm.queryBody"></textarea>
             </div>
         </div>
 

@@ -33,9 +33,13 @@ public class QueryServiceImpl implements QueryService {
      */
     public Query save(Query query) {
         log.debug("Request to save Query : {}", query);
-        String execute = queryRepo.execute(query);
-        log.error("Execution result: " + execute);
-        query.setResult(execute);
+        try {
+            String execute = queryRepo.execute(query);
+            log.error("Execution result: " + execute);
+            query.setResult(execute);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         Query result = queryRepository.save(query);
         return result;
     }

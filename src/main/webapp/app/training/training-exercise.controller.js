@@ -15,7 +15,7 @@
         vm.login = LoginService.open;
         vm.register = register;
         vm.exercise = initExercise($stateParams.number);
-        vm.solution = {"queryBody":"db.version()"};
+        vm.queryBody;
         vm.queryResult = {};
         $scope.saveQuery = saveQuery;
 
@@ -40,12 +40,17 @@
 
         function initExercise(number) {
             TrainingExercise.query({number: number}, function (result) {
+                console.log("response: query "  + result);
+
                 vm.exercise = result;
             })
         }
 
         function saveQuery() {
-            vm.queryResult = TrainingExercise.save(vm.solution);
+            TrainingExercise.save({queryBody: vm.queryBody}, function(result){
+                console.log("response: save"  + result.result);
+                vm.queryResult = result.result;
+            });
         }
 
         $scope.toggleHintVisibility = function () {

@@ -1,7 +1,9 @@
 package com.mongoex.volodymyr.repository;
 
 import com.mongodb.DB;
+import com.mongodb.DBObject;
 import com.mongodb.Mongo;
+import com.mongodb.util.JSON;
 import com.mongoex.volodymyr.domain.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.mongo.MongoProperties;
@@ -21,9 +23,18 @@ public class QueryRepo {
 
     public String execute(Query query) {
         DB db = mongo.getDB(mongoProperties.getDatabase());
-        Object eval = db.eval(query.getQueryBody());
+//        Object eval = db.eval(query.getQueryBody());
 
+        DBObject dbObject = (DBObject)JSON.parse(query.getQueryBody());
 
-        return eval.toString();
+        System.err.println(query.getQueryBody());
+        String result = "";
+        for (DBObject o : db.getCollection("query").find(dbObject)) {
+            result += o.toString();
+        }
+        System.err.println(result);
+
+        return result;
     }
+
 }
