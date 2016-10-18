@@ -38,7 +38,7 @@ public class Query implements Serializable {
 
 
     @Field("result")
-    private String result;
+    private Object result;
 
     public String getId() {
         return id;
@@ -100,7 +100,7 @@ public class Query implements Serializable {
         this.executionTime = executionTime;
     }
 
-    public String getResult() {
+    public Object getResult() {
         return result;
     }
 
@@ -109,7 +109,7 @@ public class Query implements Serializable {
         return this;
     }
 
-    public void setResult(String result) {
+    public void setResult(Object result) {
         this.result = result;
     }
 
@@ -133,15 +133,16 @@ public class Query implements Serializable {
         return Objects.hashCode(id);
     }
 
+
     @Override
     public String toString() {
         return "Query{" +
-            "id=" + id +
-            ", userId='" + userId + "'" +
-            ", exerciseNumber='" + exerciseNumber + "'" +
-            ", queryBody='" + queryBody + "'" +
-            ", executionTime='" + executionTime + "'" +
-            ", result='" + result + "'" +
-            '}';
+                "id='" + id + '\'' +
+                ", userId='" + userId + '\'' +
+                ", exerciseNumber='" + exerciseNumber + '\'' +
+                ", queryBody='" + queryBody + '\'' +
+                ", executionTime=" + executionTime +
+                ", result=" + result +
+                '}';
     }
 }

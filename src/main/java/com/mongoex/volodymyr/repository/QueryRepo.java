@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.mongo.MongoProperties;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by vkret on 17.10.16.
  */
@@ -21,20 +24,18 @@ public class QueryRepo {
     @Autowired
     private MongoProperties mongoProperties;
 
-    public String execute(Query query) {
+    public List<DBObject> execute(Query query) {
         DB db = mongo.getDB(mongoProperties.getDatabase());
 //        Object eval = db.eval(query.getQueryBody());
 
-        DBObject dbObject = (DBObject)JSON.parse(query.getQueryBody());
+        DBObject dbObject = (DBObject) JSON.parse(query.getQueryBody());
 
         System.err.println(query.getQueryBody());
-        String result = "";
-        for (DBObject o : db.getCollection("query").find(dbObject)) {
-            result += o.toString();
-        }
-        System.err.println(result);
 
-        return result;
+        List<DBObject> list = new ArrayList<>();
+        db.getCollection("query").find(dbObject).forEach(list::add);
+
+        return list;
     }
 
 }

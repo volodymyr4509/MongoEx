@@ -16,7 +16,7 @@
         vm.register = register;
         vm.exercise = initExercise($stateParams.number);
         vm.queryBody;
-        vm.queryResult = {};
+        vm.queryResult = [];
         $scope.saveQuery = saveQuery;
 
         $scope.showHintButtonText = 'Show hint';
@@ -48,7 +48,9 @@
 
         function saveQuery() {
             TrainingExercise.save({queryBody: vm.queryBody}, function(result){
-                console.log("response: save"  + result.result);
+                console.log("response: save                  "  + result.result);
+                //var res = JSON.parse(result.result);
+                //console.log("Parsed: " + res);
                 vm.queryResult = result.result;
             });
         }
