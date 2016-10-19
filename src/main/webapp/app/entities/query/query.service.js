@@ -21,6 +21,9 @@
                     return data;
                 }
             },
+            'post': {
+                method: 'POST'
+            },
             'update': { method:'PUT' }
         });
     }

@@ -5,9 +5,9 @@
         .module('mongoExApp')
         .controller('TrainingExerciseController', TrainingExerciseController);
 
-    TrainingExerciseController.$inject = ['$scope', 'Principal', 'LoginService', '$state', '$stateParams', 'TrainingExercise'];
+    TrainingExerciseController.$inject = ['$scope', 'Principal', 'LoginService', '$state', '$stateParams', 'Query', 'Exercise'];
 
-    function TrainingExerciseController($scope, Principal, LoginService, $state, $stateParams, TrainingExercise) {
+    function TrainingExerciseController($scope, Principal, LoginService, $state, $stateParams, Query, Exercise) {
         var vm = this;
 
         vm.account = null;
@@ -39,7 +39,7 @@
         }
 
         function initExercise(number) {
-            TrainingExercise.query({number: number}, function (result) {
+            Exercise.getByNumber({number: number}, function (result) {
                 console.log("response: query "  + result);
 
                 vm.exercise = result;
@@ -47,7 +47,7 @@
         }
 
         function saveQuery() {
-            TrainingExercise.save({queryBody: vm.queryBody}, function(result){
+            Query.post({queryBody: vm.queryBody}, function(result){
                 console.log("response: save                  "  + result.result);
                 //var res = JSON.parse(result.result);
                 //console.log("Parsed: " + res);

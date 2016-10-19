@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
     angular
         .module('mongoExApp')
@@ -6,8 +6,8 @@
 
     Exercise.$inject = ['$resource', 'DateUtils'];
 
-    function Exercise ($resource, DateUtils) {
-        var resourceUrl =  'api/exercises/:id';
+    function Exercise($resource, DateUtils) {
+        var resourceUrl = 'api/exercises/:id';
 
         return $resource(resourceUrl, {}, {
             'query': {
@@ -24,9 +24,14 @@
                     return data;
                 }
             },
+            'getByNumber': {
+                method: 'GET',
+                url: 'api/exercises/number/:number'
+            },
             'update': {
-                method:'PUT'
+                method: 'PUT'
             }
         });
     }
 })();
+
