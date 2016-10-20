@@ -40,17 +40,12 @@
 
         function initExercise(number) {
             Exercise.getByNumber({number: number}, function (result) {
-                console.log("response: query "  + result);
-
                 vm.exercise = result;
             })
         }
 
         function saveQuery() {
             Query.post({queryBody: vm.queryBody}, function(result){
-                console.log("response: save                  "  + result.result);
-                //var res = JSON.parse(result.result);
-                //console.log("Parsed: " + res);
                 vm.queryResult = result.result;
             });
         }

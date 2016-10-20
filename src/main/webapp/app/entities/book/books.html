@@ -1,0 +1,74 @@
+<div>
+    <h2 data-translate="mongoExApp.book.home.title">Books</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="book.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="mongoExApp.book.home.createLabel">
+                        Create new Book
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="index"><span data-translate="mongoExApp.book.index">Index</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="guid"><span data-translate="mongoExApp.book.guid">Guid</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="isActive"><span data-translate="mongoExApp.book.isActive">Is Active</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="price"><span data-translate="mongoExApp.book.price">Price</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="name"><span data-translate="mongoExApp.book.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="seller"><span data-translate="mongoExApp.book.seller">Seller</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="tags"><span data-translate="mongoExApp.book.tags">Tags</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="author"><span data-translate="mongoExApp.book.author">Author</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="book in vm.books track by book.id">
+                    <td><a ui-sref="book-detail({id:book.id})">{{book.id}}</a></td>
+                    <td>{{book.index}}</td>
+                    <td>{{book.guid}}</td>
+                    <td>{{book.isActive}}</td>
+                    <td>{{book.price}}</td>
+                    <td>{{book.name}}</td>
+                    <td>{{book.seller}}</td>
+                    <td>{{book.tags}}</td>
+                    <td>{{book.author}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="book-detail({id:book.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="book.edit({id:book.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="book.delete({id:book.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+    </div>
+    <uib-pager total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pager>
+</div>

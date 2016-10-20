@@ -10,6 +10,7 @@
                 "main": "Entities",
                 "query": "Query",
                 "exercise": "Exercise",
+                "book": "Book",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

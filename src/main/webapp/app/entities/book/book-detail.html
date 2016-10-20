@@ -1,0 +1,51 @@
+
+<div>
+    <h2><span data-translate="mongoExApp.book.detail.title">Book</span> {{vm.book.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="mongoExApp.book.index">Index</span></dt>
+        <dd>
+            <span>{{vm.book.index}}</span>
+        </dd>
+        <dt><span data-translate="mongoExApp.book.guid">Guid</span></dt>
+        <dd>
+            <span>{{vm.book.guid}}</span>
+        </dd>
+        <dt><span data-translate="mongoExApp.book.isActive">Is Active</span></dt>
+        <dd>
+            <span>{{vm.book.isActive}}</span>
+        </dd>
+        <dt><span data-translate="mongoExApp.book.price">Price</span></dt>
+        <dd>
+            <span>{{vm.book.price}}</span>
+        </dd>
+        <dt><span data-translate="mongoExApp.book.name">Name</span></dt>
+        <dd>
+            <span>{{vm.book.name}}</span>
+        </dd>
+        <dt><span data-translate="mongoExApp.book.seller">Seller</span></dt>
+        <dd>
+            <span>{{vm.book.seller}}</span>
+        </dd>
+        <dt><span data-translate="mongoExApp.book.tags">Tags</span></dt>
+        <dd>
+            <span>{{vm.book.tags}}</span>
+        </dd>
+        <dt><span data-translate="mongoExApp.book.author">Author</span></dt>
+        <dd>
+            <span>{{vm.book.author}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="book-detail.edit({id:vm.book.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
