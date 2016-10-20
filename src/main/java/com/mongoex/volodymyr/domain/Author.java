@@ -9,18 +9,18 @@ import java.util.Objects;
 public class Author implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String index;
+    private int index;
     private String name;
     private int age;
     private String eyeColor;
     private String gender;
     private String favoriteFruit;
 
-    public String getIndex() {
+    public int getIndex() {
         return index;
     }
 
-    public Author setIndex(String index) {
+    public Author setIndex(int index) {
         this.index = index;
         return this;
     }
