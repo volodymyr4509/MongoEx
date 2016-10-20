@@ -22,48 +22,54 @@ public class Seller implements Serializable {
         return company;
     }
 
-    public void setCompany(String company) {
+    public Seller setCompany(String company) {
         this.company = company;
+        return this;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public Seller setEmail(String email) {
         this.email = email;
+        return this;
     }
 
     public String getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public Seller setPhone(String phone) {
         this.phone = phone;
+        return this;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public Seller setAddress(String address) {
         this.address = address;
+        return this;
     }
 
     public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
+    public Seller setLatitude(double latitude) {
         this.latitude = latitude;
+        return this;
     }
 
     public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
+    public Seller setLongitude(double longitude) {
         this.longitude = longitude;
+        return this;
     }
 
     @Override

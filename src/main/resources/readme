@@ -1,0 +1,1 @@
+mongoimport -h localhost --port 27017 -d MongoEx -c book --jsonArray --type json --file /home/vkret/IdeaProjects/jhipster/mongotry/src/main/resources/generated.json

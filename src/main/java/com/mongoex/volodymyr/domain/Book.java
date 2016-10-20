@@ -26,7 +26,7 @@ public class Book implements Serializable {
     @Field("guid")
     private String guid;
 
-    @Field("is_active")
+    @Field("isActive")
     private Boolean isActive;
 
     @Field("price")

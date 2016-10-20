@@ -1,7 +1,5 @@
 package com.mongoex.volodymyr.domain;
 
-import org.springframework.data.annotation.Id;
-
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -11,60 +9,65 @@ import java.util.Objects;
 public class Author implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Id
-    private String id;
+    private String index;
     private String name;
     private int age;
     private String eyeColor;
     private String gender;
     private String favoriteFruit;
 
-    public String getId() {
-        return id;
+    public String getIndex() {
+        return index;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public Author setIndex(String index) {
+        this.index = index;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Author setName(String name) {
         this.name = name;
+        return this;
     }
 
     public int getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public Author setAge(int age) {
         this.age = age;
+        return this;
     }
 
     public String getEyeColor() {
         return eyeColor;
     }
 
-    public void setEyeColor(String eyeColor) {
+    public Author setEyeColor(String eyeColor) {
         this.eyeColor = eyeColor;
+        return this;
     }
 
     public String getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public Author setGender(String gender) {
         this.gender = gender;
+        return this;
     }
 
     public String getFavoriteFruit() {
         return favoriteFruit;
     }
 
-    public void setFavoriteFruit(String favoriteFruit) {
+    public Author setFavoriteFruit(String favoriteFruit) {
         this.favoriteFruit = favoriteFruit;
+        return this;
     }
 
     @Override
@@ -73,7 +76,7 @@ public class Author implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Author author = (Author) o;
         return Objects.equals(age, author.age) &&
-                Objects.equals(id, author.id) &&
+                Objects.equals(index, author.index) &&
                 Objects.equals(name, author.name) &&
                 Objects.equals(eyeColor, author.eyeColor) &&
                 Objects.equals(gender, author.gender) &&
@@ -82,13 +85,13 @@ public class Author implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, age, eyeColor, gender, favoriteFruit);
+        return Objects.hash(index, name, age, eyeColor, gender, favoriteFruit);
     }
 
     @Override
     public String toString() {
         return "Author{" +
-                "id='" + id + '\'' +
+                "index='" + index + '\'' +
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", eyeColor='" + eyeColor + '\'' +

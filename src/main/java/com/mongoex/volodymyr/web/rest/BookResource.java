@@ -111,6 +111,8 @@ public class BookResource {
     public ResponseEntity<Book> getBook(@PathVariable String id) {
         log.debug("REST request to get Book : {}", id);
         Book book = bookService.findOne(id);
+        log.debug("Retrieved Book from mongo: {}", book);
+
         return Optional.ofNullable(book)
             .map(result -> new ResponseEntity<>(
                 result,
