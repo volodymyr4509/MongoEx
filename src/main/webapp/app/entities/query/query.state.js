@@ -107,7 +107,7 @@
                                 userId: null,
                                 exerciseId: null,
                                 queryBody: null,
-                                executionTime: null,
+                                createdDate: null,
                                 result: null,
                                 id: null
                             };
