@@ -8,6 +8,7 @@ import com.mongoex.volodymyr.repository.BookRepository;
 import com.mongoex.volodymyr.repository.UserQueryRepository;
 import com.mongoex.volodymyr.service.BookService;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -84,11 +85,11 @@ public class BookServiceImpl implements BookService {
         try {
             JSONArray jsonArray = new JSONArray("[" + q.getQueryBody() + "]");
             query = (DBObject) JSON.parse(jsonArray.getString(0));
-            projection = (DBObject) JSON.parse(jsonArray.getString(1));
-        } catch (Exception e) {
-            e.printStackTrace();
+            if (!jsonArray.isNull(1)){
+                projection = (DBObject) JSON.parse(jsonArray.getString(1));
+            }
+        } catch (JSONException e) {
             log.error("Cannot parse incoming query {}", q.getQueryBody(), e.getMessage());
-
         }
         if (query != null) {
             results = userQueryRepository.find(query, projection);
