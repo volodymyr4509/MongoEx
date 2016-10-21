@@ -30,7 +30,7 @@ public class Book implements Serializable {
     private Boolean isActive;
 
     @Field("price")
-    private String price;
+    private double price;
 
     @Field("name")
     private String name;
@@ -91,16 +91,16 @@ public class Book implements Serializable {
         this.isActive = isActive;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public Book price(String price) {
+    public Book price(double price) {
         this.price = price;
         return this;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

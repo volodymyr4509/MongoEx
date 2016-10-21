@@ -19,6 +19,7 @@ import java.util.List;
 /**
  * An implementation of Spring Boot's AuditEventRepository.
  */
+@SuppressWarnings("unused")
 @Repository
 public class CustomAuditEventRepository implements AuditEventRepository {
 

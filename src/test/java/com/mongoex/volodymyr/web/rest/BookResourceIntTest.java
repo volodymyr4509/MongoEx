@@ -49,8 +49,8 @@ public class BookResourceIntTest {
     private static final Boolean DEFAULT_IS_ACTIVE = false;
     private static final Boolean UPDATED_IS_ACTIVE = true;
 
-    private static final String DEFAULT_PRICE = "1";
-    private static final String UPDATED_PRICE = "2";
+    private static final double DEFAULT_PRICE = 1;
+    private static final double UPDATED_PRICE = 2;
     private static final String DEFAULT_NAME = "AAAAA";
     private static final String UPDATED_NAME = "BBBBB";
     private static final Seller DEFAULT_SELLER = new Seller();
@@ -149,7 +149,7 @@ public class BookResourceIntTest {
                 .andExpect(jsonPath("$.[*].index").value(hasItem(DEFAULT_INDEX)))
                 .andExpect(jsonPath("$.[*].guid").value(hasItem(DEFAULT_GUID.toString())))
                 .andExpect(jsonPath("$.[*].isActive").value(hasItem(DEFAULT_IS_ACTIVE.booleanValue())))
-                .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.toString())))
+                .andExpect(jsonPath("$.[*].price").value(hasItem(Double.valueOf(DEFAULT_PRICE))))
                 .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
                 .andExpect(jsonPath("$.[*].seller").value(hasItem(DEFAULT_SELLER.toString())))
                 .andExpect(jsonPath("$.[*].tags").value(hasItem(DEFAULT_TAGS.toString())))
@@ -169,7 +169,7 @@ public class BookResourceIntTest {
             .andExpect(jsonPath("$.index").value(DEFAULT_INDEX))
             .andExpect(jsonPath("$.guid").value(DEFAULT_GUID.toString()))
             .andExpect(jsonPath("$.isActive").value(DEFAULT_IS_ACTIVE.booleanValue()))
-            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.toString()))
+            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.seller").value(DEFAULT_SELLER.toString()))
             .andExpect(jsonPath("$.tags").value(DEFAULT_TAGS.toString()))

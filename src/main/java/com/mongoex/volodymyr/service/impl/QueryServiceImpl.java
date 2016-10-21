@@ -1,8 +1,9 @@
 package com.mongoex.volodymyr.service.impl;
 
+import com.mongodb.DBObject;
 import com.mongoex.volodymyr.domain.Query;
-import com.mongoex.volodymyr.repository.QueryRepo;
 import com.mongoex.volodymyr.repository.QueryRepository;
+import com.mongoex.volodymyr.repository.UserQueryRepo;
 import com.mongoex.volodymyr.service.QueryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +24,7 @@ public class QueryServiceImpl implements QueryService {
     private QueryRepository queryRepository;
 
     @Inject
-    private QueryRepo queryRepo;
+    private UserQueryRepo userQueryRepo;
 
     /**
      * Save a query.
@@ -34,14 +35,11 @@ public class QueryServiceImpl implements QueryService {
     public Query save(Query query) {
         log.debug("Request to save Query : {}", query);
 
-        Object execute = null;
-        try {
-            execute = queryRepo.execute(query);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        log.error("Execution result: " + execute);
-        query.setResult(execute);
+        List<DBObject> results = userQueryRepo.find(query);
+
+
+        log.debug("Query execution result: " + results);
+        query.setResult(results);
 
         Query result = queryRepository.save(query);
         return result;
