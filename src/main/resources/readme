@@ -1,1 +1,44 @@
 mongoimport -h localhost --port 27017 -d MongoEx -c book --jsonArray --type json --file /home/vkret/IdeaProjects/jhipster/mongotry/src/main/resources/generated.json
+
+
+
+
+http://www.json-generator.com/
+
+[
+  '{{repeat(100000, 100000)}}',
+  {
+    _id: '{{objectId()}}',
+    index: '{{index()}}',
+    guid: '{{guid()}}',
+    isActive: '{{bool()}}',
+    price: '{{floating(3, 45, 2, "$0.00")}}',
+    name: '{{firstName()}} {{surname()}}',
+    seller: {
+        company: '{{company().toUpperCase()}}',
+    	email: '{{email()}}',
+    	phone: '+1 {{phone()}}',
+    	address: '{{integer(100, 999)}} {{street()}}, {{city()}}, {{state()}}, {{integer(100, 10000)}}',
+    	registered: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}',
+    	latitude: '{{floating(-90.000001, 90)}}',
+    	longitude: '{{floating(-180.000001, 180)}}'
+    },
+    tags: [
+      '{{repeat(7)}}',
+      '{{lorem(1, "words")}}'
+    ],
+    author:
+      {
+        id: '{{index()}}',
+        name: '{{firstName()}} {{surname()}}',
+        age: '{{integer(20, 40)}}',
+        eyeColor: '{{random("blue", "brown", "green")}}',
+        gender: '{{gender()}}',
+        favoriteFruit: function (tags) {
+        var fruits = ['apple', 'banana', 'strawberry'];
+        return fruits[tags.integer(0, fruits.length - 1)];
+     	}
+     }
+
+  }
+]
