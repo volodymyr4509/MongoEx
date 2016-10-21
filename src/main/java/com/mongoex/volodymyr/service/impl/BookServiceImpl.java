@@ -1,5 +1,6 @@
 package com.mongoex.volodymyr.service.impl;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
 import com.mongoex.volodymyr.domain.Book;
@@ -16,7 +17,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -79,21 +79,22 @@ public class BookServiceImpl implements BookService {
     }
 
     public List<DBObject> execute(Query q) {
-        DBObject query = null;
+        DBObject query = new BasicDBObject();
         DBObject projection = null;
-        List<DBObject> results = new ArrayList<>();
+        List<DBObject> results;
+        log.debug("Parsing query body {}", q.getQueryBody());
         try {
             JSONArray jsonArray = new JSONArray("[" + q.getQueryBody() + "]");
             query = (DBObject) JSON.parse(jsonArray.getString(0));
-            if (!jsonArray.isNull(1)){
+            log.debug("Parsed query DBObject {}", query);
+            if (!jsonArray.isNull(1)) {
                 projection = (DBObject) JSON.parse(jsonArray.getString(1));
+                log.debug("Parsed projection DBObject {}", projection);
             }
         } catch (JSONException e) {
             log.error("Cannot parse incoming query {}", q.getQueryBody(), e.getMessage());
         }
-        if (query != null) {
-            results = userQueryRepository.find(query, projection);
-        }
+        results = userQueryRepository.find(query, projection);
 
         return results;
     }

@@ -4,9 +4,10 @@
             <button class="btn btn-primary" ui-sref="training">Back</button>
         </div>
         <div class="text-center col-md-10">
-            <p class="text-huge" data-translate="training.title">Exercise!</p>
+            <p class="text-large">db.book.find({{vm.queryBody}})</p>
+            <!--<p class="text-huge" data-translate="training.title">Exercise!</p>-->
         </div>
-        <div class="col-md-1">
+        <div >
             <button class="btn btn-info" ng-click="saveQuery()">Run Query</button>
         </div>
     </div>
@@ -17,7 +18,7 @@
                 <p class="text-large">{{vm.exercise.number}}.{{vm.exercise.description}}</p>
             </div>
             <div class="col-md-8">
-                <textarea rows="20" placeholder="Query..." class="col-md-8 match-parent"
+                <textarea rows="10" placeholder="Query..." class="col-md-8 match-parent"
                           ng-model="vm.queryBody"></textarea>
             </div>
         </div>

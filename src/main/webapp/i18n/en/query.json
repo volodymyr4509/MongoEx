@@ -17,9 +17,9 @@
                 "title": "Query"
             },
             "userId": "User Id",
-            "exerciseId": "Exercise Id",
+            "exerciseNumber": "Exercise Number",
             "queryBody": "Query Body",
-            "executionTime": "Execution Time",
+            "createdDate": "Created Date",
             "result": "Result"
         }
     }

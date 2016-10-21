@@ -22,7 +22,7 @@
                     <th><span data-translate="mongoExApp.query.userId">User Id</span></th>
                     <th><span data-translate="mongoExApp.query.exerciseNumber">Exercise Id</span></th>
                     <th><span data-translate="mongoExApp.query.queryBody">Query Body</span></th>
-                    <th><span data-translate="mongoExApp.query.executionTime">Execution Time</span></th>
+                    <th><span data-translate="mongoExApp.query.createdDate">Execution Time</span></th>
                     <th><span data-translate="mongoExApp.query.result">Result</span></th>
                     <th></th>
                 </tr>
@@ -33,7 +33,7 @@
                     <td>{{query.userId}}</td>
                     <td>{{query.exerciseNumber}}</td>
                     <td>{{query.queryBody}}</td>
-                    <td>{{query.executionTime | date:'medium'}}</td>
+                    <td>{{query.createdDate | date:'medium'}}</td>
                     <td>{{query.result}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

@@ -93,7 +93,7 @@ public class QueryResourceIntTest {
                 .userId(DEFAULT_USER_ID)
                 .exerciseId(DEFAULT_EXERCISE_ID)
                 .queryBody(DEFAULT_QUERY_BODY)
-                .executionTime(DEFAULT_EXECUTION_TIME)
+                .createdDate(DEFAULT_EXECUTION_TIME)
                 .result(DEFAULT_RESULT);
         return query;
     }
@@ -122,7 +122,7 @@ public class QueryResourceIntTest {
         assertThat(testQuery.getUserId()).isEqualTo(DEFAULT_USER_ID);
         assertThat(testQuery.getExerciseNumber()).isEqualTo(DEFAULT_EXERCISE_ID);
         assertThat(testQuery.getQueryBody()).isEqualTo(DEFAULT_QUERY_BODY);
-        assertThat(testQuery.getExecutionTime()).isEqualTo(DEFAULT_EXECUTION_TIME);
+        assertThat(testQuery.getCreatedDate()).isEqualTo(DEFAULT_EXECUTION_TIME);
         assertThat(testQuery.getResult()).isEqualTo(DEFAULT_RESULT);
     }
 
@@ -139,7 +139,7 @@ public class QueryResourceIntTest {
                 .andExpect(jsonPath("$.[*].userId").value(hasItem(DEFAULT_USER_ID.toString())))
                 .andExpect(jsonPath("$.[*].exerciseId").value(hasItem(DEFAULT_EXERCISE_ID.toString())))
                 .andExpect(jsonPath("$.[*].queryBody").value(hasItem(DEFAULT_QUERY_BODY.toString())))
-                .andExpect(jsonPath("$.[*].executionTime").value(hasItem(DEFAULT_EXECUTION_TIME_STR)))
+                .andExpect(jsonPath("$.[*].createdDate").value(hasItem(DEFAULT_EXECUTION_TIME_STR)))
                 .andExpect(jsonPath("$.[*].result").value(hasItem(DEFAULT_RESULT.toString())));
     }
 
@@ -156,7 +156,7 @@ public class QueryResourceIntTest {
             .andExpect(jsonPath("$.userId").value(DEFAULT_USER_ID.toString()))
             .andExpect(jsonPath("$.exerciseId").value(DEFAULT_EXERCISE_ID.toString()))
             .andExpect(jsonPath("$.queryBody").value(DEFAULT_QUERY_BODY.toString()))
-            .andExpect(jsonPath("$.executionTime").value(DEFAULT_EXECUTION_TIME_STR))
+            .andExpect(jsonPath("$.createdDate").value(DEFAULT_EXECUTION_TIME_STR))
             .andExpect(jsonPath("$.result").value(DEFAULT_RESULT.toString()));
     }
 
@@ -180,7 +180,7 @@ public class QueryResourceIntTest {
                 .userId(UPDATED_USER_ID)
                 .exerciseId(UPDATED_EXERCISE_ID)
                 .queryBody(UPDATED_QUERY_BODY)
-                .executionTime(UPDATED_EXECUTION_TIME)
+                .createdDate(UPDATED_EXECUTION_TIME)
                 .result(UPDATED_RESULT);
 
         restQueryMockMvc.perform(put("/api/queries")
@@ -195,7 +195,7 @@ public class QueryResourceIntTest {
         assertThat(testQuery.getUserId()).isEqualTo(UPDATED_USER_ID);
         assertThat(testQuery.getExerciseNumber()).isEqualTo(UPDATED_EXERCISE_ID);
         assertThat(testQuery.getQueryBody()).isEqualTo(UPDATED_QUERY_BODY);
-        assertThat(testQuery.getExecutionTime()).isEqualTo(UPDATED_EXECUTION_TIME);
+        assertThat(testQuery.getCreatedDate()).isEqualTo(UPDATED_EXECUTION_TIME);
         assertThat(testQuery.getResult()).isEqualTo(UPDATED_RESULT);
     }
 

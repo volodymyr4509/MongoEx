@@ -33,8 +33,8 @@ public class Query implements Serializable {
 
     @CreatedDate
     @Field("created_date")
-    @JsonIgnore
-    private ZonedDateTime executionTime = ZonedDateTime.now();
+//    @JsonIgnore
+    private ZonedDateTime createdDate = ZonedDateTime.now();
 
 
     @Field("result")
@@ -87,17 +87,17 @@ public class Query implements Serializable {
         this.queryBody = queryBody;
     }
 
-    public ZonedDateTime getExecutionTime() {
-        return executionTime;
+    public ZonedDateTime getCreatedDate() {
+        return createdDate;
     }
 
-    public Query executionTime(ZonedDateTime executionTime) {
-        this.executionTime = executionTime;
+    public Query createdDate(ZonedDateTime createdDate) {
+        this.createdDate = createdDate;
         return this;
     }
 
-    public void setExecutionTime(ZonedDateTime executionTime) {
-        this.executionTime = executionTime;
+    public void setCreatedDate(ZonedDateTime createdDate) {
+        this.createdDate = createdDate;
     }
 
     public Object getResult() {
@@ -141,7 +141,7 @@ public class Query implements Serializable {
                 ", userId='" + userId + '\'' +
                 ", exerciseNumber='" + exerciseNumber + '\'' +
                 ", queryBody='" + queryBody + '\'' +
-                ", executionTime=" + executionTime +
+                ", createdDate=" + createdDate +
                 ", result=" + result +
                 '}';
     }
