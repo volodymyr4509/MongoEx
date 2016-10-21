@@ -1,6 +1,8 @@
 package com.mongoex.volodymyr.service;
 
+import com.mongodb.DBObject;
 import com.mongoex.volodymyr.domain.Book;
+import com.mongoex.volodymyr.domain.Query;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -20,25 +22,27 @@ public interface BookService {
     Book save(Book book);
 
     /**
-     *  Get all the books.
-     *  
-     *  @param pageable the pagination information
-     *  @return the list of entities
+     * Get all the books.
+     *
+     * @param pageable the pagination information
+     * @return the list of entities
      */
     Page<Book> findAll(Pageable pageable);
 
     /**
-     *  Get the "id" book.
+     * Get the "id" book.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
     Book findOne(String id);
 
     /**
-     *  Delete the "id" book.
+     * Delete the "id" book.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     void delete(String id);
+
+    List<DBObject> execute(Query query);
 }
