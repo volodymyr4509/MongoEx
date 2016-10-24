@@ -19,6 +19,7 @@ import java.util.List;
 public class QueryServiceImpl implements QueryService {
 
     private final Logger log = LoggerFactory.getLogger(QueryServiceImpl.class);
+    private final int MAX_RESULT_COUNT = 10;
 
     @Inject
     private QueryRepository queryRepository;
@@ -35,17 +36,19 @@ public class QueryServiceImpl implements QueryService {
     public Query save(Query query) {
         log.debug("Request to save Query : {}", query);
 
-
         List<DBObject> results = bookService.execute(query);
 
+        if (results.size() > MAX_RESULT_COUNT) {
+            log.debug("Trimming results size: {} list to {}", results.size(), MAX_RESULT_COUNT);
+            results = results.subList(0, MAX_RESULT_COUNT);
+        }
 
-        log.debug("Query execution result: " + results);
+        log.debug("Query execution result count: " + results.size());
         query.setResult(results);
 
         Query result = queryRepository.save(query);
         return result;
     }
-
 
     /**
      * Get all the queries.

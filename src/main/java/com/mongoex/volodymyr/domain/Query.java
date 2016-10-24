@@ -1,6 +1,5 @@
 package com.mongoex.volodymyr.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -26,16 +25,14 @@ public class Query implements Serializable {
     private String userId;
 
     @Field("exercise_number")
-    private String exerciseNumber;
+    private int exerciseNumber;
 
     @Field("query_body")
     private String queryBody;
 
     @CreatedDate
     @Field("created_date")
-//    @JsonIgnore
     private ZonedDateTime createdDate = ZonedDateTime.now();
-
 
     @Field("result")
     private Object result;
@@ -61,16 +58,16 @@ public class Query implements Serializable {
         this.userId = userId;
     }
 
-    public String getExerciseNumber() {
+    public int getExerciseNumber() {
         return exerciseNumber;
     }
 
-    public Query exerciseId(String exerciseId) {
+    public Query exerciseId(int exerciseId) {
         this.exerciseNumber = exerciseId;
         return this;
     }
 
-    public void setExerciseNumber(String exerciseNumber) {
+    public void setExerciseNumber(int exerciseNumber) {
         this.exerciseNumber = exerciseNumber;
     }
 
@@ -122,7 +119,7 @@ public class Query implements Serializable {
             return false;
         }
         Query query = (Query) o;
-        if(query.id == null || id == null) {
+        if (query.id == null || id == null) {
             return false;
         }
         return Objects.equals(id, query.id);

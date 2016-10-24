@@ -1,5 +1,6 @@
 package com.mongoex.volodymyr.security;
 
+import com.mongoex.volodymyr.domain.SecuredUser;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -35,6 +36,19 @@ public final class SecurityUtils {
             }
         }
         return userName;
+    }
+
+    public static String getCurrentUserId() {
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+        String userId = null;
+        if (authentication != null) {
+            if (authentication.getPrincipal() instanceof SecuredUser) {
+                SecuredUser securedUser = (SecuredUser) authentication.getPrincipal();
+                userId = securedUser.getId();
+            }
+        }
+        return userId;
     }
 
     /**

@@ -15,7 +15,7 @@
         vm.login = LoginService.open;
         vm.register = register;
         vm.exercise = initExercise($stateParams.number);
-        vm.queryBody;
+        vm.query = null;
         vm.queryResult = [];
         $scope.saveQuery = saveQuery;
 
@@ -45,7 +45,8 @@
         }
 
         function saveQuery() {
-            Query.post({queryBody: vm.queryBody}, function(result){
+            console.log("query body: " + vm.query.body + ", number: " + $stateParams.number);
+            Query.post({queryBody: vm.query.body, exerciseNumber: $stateParams.number}, function (result) {
                 vm.queryResult = result.result;
             });
         }

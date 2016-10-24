@@ -2,6 +2,7 @@ package com.mongoex.volodymyr.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.mongoex.volodymyr.domain.Query;
+import com.mongoex.volodymyr.security.SecurityUtils;
 import com.mongoex.volodymyr.service.QueryService;
 import com.mongoex.volodymyr.web.rest.util.HeaderUtil;
 import org.slf4j.Logger;
@@ -46,8 +47,12 @@ public class QueryResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("query", "idexists", "A new query cannot already have an ID")).body(null);
         }
 
-        Query result = queryService.save(query);
+        if (query.getExerciseNumber() < 1) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("query", "exerciseNumber missed", "A new query cannot have exerciseNumber < 1")).body(null);
+        }
 
+        query.setUserId(SecurityUtils.getCurrentUserId());
+        Query result = queryService.save(query);
 
         return ResponseEntity.created(new URI("/api/queries/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("query", result.getId().toString()))
@@ -64,8 +69,8 @@ public class QueryResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @RequestMapping(value = "/queries",
-        method = RequestMethod.PUT,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+            method = RequestMethod.PUT,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Query> updateQuery(@RequestBody Query query) throws URISyntaxException {
         log.debug("REST request to update Query : {}", query);
@@ -75,8 +80,8 @@ public class QueryResource {
         Query result = queryService.save(query);
         log.debug("REST update Query : {}", result);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert("query", query.getId().toString()))
-            .body(result);
+                .headers(HeaderUtil.createEntityUpdateAlert("query", query.getId().toString()))
+                .body(result);
     }
 
     /**
@@ -100,18 +105,18 @@ public class QueryResource {
      * @return the ResponseEntity with status 200 (OK) and with body the query, or with status 404 (Not Found)
      */
     @RequestMapping(value = "/queries/{id}",
-        method = RequestMethod.GET,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Query> getQuery(@PathVariable String id) {
         log.debug("REST request to get Query : {}", id);
         Query query = queryService.findOne(id);
         log.debug("REST request result Query : {}", query);
         return Optional.ofNullable(query)
-            .map(result -> new ResponseEntity<>(
-                result,
-                HttpStatus.OK))
-            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .map(result -> new ResponseEntity<>(
+                        result,
+                        HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     /**
@@ -121,8 +126,8 @@ public class QueryResource {
      * @return the ResponseEntity with status 200 (OK)
      */
     @RequestMapping(value = "/queries/{id}",
-        method = RequestMethod.DELETE,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+            method = RequestMethod.DELETE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Void> deleteQuery(@PathVariable String id) {
         log.debug("REST request to delete Query : {}", id);

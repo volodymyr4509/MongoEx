@@ -45,8 +45,8 @@ public class QueryResourceIntTest {
 
     private static final String DEFAULT_USER_ID = "AAAAA";
     private static final String UPDATED_USER_ID = "BBBBB";
-    private static final String DEFAULT_EXERCISE_ID = "AAAAA";
-    private static final String UPDATED_EXERCISE_ID = "BBBBB";
+    private static final int DEFAULT_EXERCISE_ID = 1;
+    private static final int UPDATED_EXERCISE_ID = 2;
     private static final String DEFAULT_QUERY_BODY = "AAAAA";
     private static final String UPDATED_QUERY_BODY = "BBBBB";
 
@@ -137,7 +137,7 @@ public class QueryResourceIntTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(query.getId())))
                 .andExpect(jsonPath("$.[*].userId").value(hasItem(DEFAULT_USER_ID.toString())))
-                .andExpect(jsonPath("$.[*].exerciseId").value(hasItem(DEFAULT_EXERCISE_ID.toString())))
+                .andExpect(jsonPath("$.[*].exerciseId").value(hasItem(DEFAULT_EXERCISE_ID)))
                 .andExpect(jsonPath("$.[*].queryBody").value(hasItem(DEFAULT_QUERY_BODY.toString())))
                 .andExpect(jsonPath("$.[*].createdDate").value(hasItem(DEFAULT_EXECUTION_TIME_STR)))
                 .andExpect(jsonPath("$.[*].result").value(hasItem(DEFAULT_RESULT.toString())));
@@ -154,7 +154,7 @@ public class QueryResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(query.getId()))
             .andExpect(jsonPath("$.userId").value(DEFAULT_USER_ID.toString()))
-            .andExpect(jsonPath("$.exerciseId").value(DEFAULT_EXERCISE_ID.toString()))
+            .andExpect(jsonPath("$.exerciseId").value(DEFAULT_EXERCISE_ID))
             .andExpect(jsonPath("$.queryBody").value(DEFAULT_QUERY_BODY.toString()))
             .andExpect(jsonPath("$.createdDate").value(DEFAULT_EXECUTION_TIME_STR))
             .andExpect(jsonPath("$.result").value(DEFAULT_RESULT.toString()));

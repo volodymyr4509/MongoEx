@@ -1,5 +1,6 @@
 package com.mongoex.volodymyr.security;
 
+import com.mongoex.volodymyr.domain.SecuredUser;
 import com.mongoex.volodymyr.domain.User;
 import com.mongoex.volodymyr.repository.UserRepository;
 import org.slf4j.Logger;
@@ -11,7 +12,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
-import java.util.*;
+import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -36,11 +39,9 @@ public class UserDetailsService implements org.springframework.security.core.use
             }
             List<GrantedAuthority> grantedAuthorities = user.getAuthorities().stream()
                     .map(authority -> new SimpleGrantedAuthority(authority.getName()))
-                .collect(Collectors.toList());
-            return new org.springframework.security.core.userdetails.User(lowercaseLogin,
-                user.getPassword(),
-                grantedAuthorities);
-        }).orElseThrow(() -> new UsernameNotFoundException("User " + lowercaseLogin + " was not found in the " +
-        "database"));
+                    .collect(Collectors.toList());
+            return new SecuredUser(lowercaseLogin, user.getPassword(), grantedAuthorities, user.getId());
+        }).orElseThrow(() -> new UsernameNotFoundException("User " + lowercaseLogin + " was not found in the database"));
     }
+
 }

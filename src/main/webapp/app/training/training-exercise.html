@@ -4,7 +4,7 @@
             <button class="btn btn-primary" ui-sref="training">Back</button>
         </div>
         <div class="text-center col-md-10">
-            <p class="text-large">db.book.find({{vm.queryBody}})</p>
+            <p class="text-large">db.book.find({{vm.query.body}})</p>
             <!--<p class="text-huge" data-translate="training.title">Exercise!</p>-->
         </div>
         <div >
@@ -19,7 +19,7 @@
             </div>
             <div class="col-md-8">
                 <textarea rows="10" placeholder="Query..." class="col-md-8 match-parent"
-                          ng-model="vm.queryBody"></textarea>
+                          ng-model="vm.query.body"></textarea>
             </div>
         </div>
 
