@@ -45,7 +45,7 @@
         }
 
         function saveQuery() {
-            console.log("query body: " + vm.query.body + ", number: " + $stateParams.number);
+            vm.queryResult = [];
             Query.post({queryBody: vm.query.body, exerciseNumber: $stateParams.number}, function (result) {
                 vm.queryResult = result.result;
             });

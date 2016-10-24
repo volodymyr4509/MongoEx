@@ -17,6 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -79,9 +80,9 @@ public class BookServiceImpl implements BookService {
     }
 
     public List<DBObject> execute(Query q) {
-        DBObject query = new BasicDBObject();
+        DBObject query;
         DBObject projection = null;
-        List<DBObject> results;
+        List<DBObject> results = new ArrayList<>();
         log.debug("Parsing query body {}", q.getQueryBody());
         try {
             JSONArray jsonArray = new JSONArray("[" + q.getQueryBody() + "]");
@@ -91,10 +92,10 @@ public class BookServiceImpl implements BookService {
                 projection = (DBObject) JSON.parse(jsonArray.getString(1));
                 log.debug("Parsed projection DBObject {}", projection);
             }
+            results = userQueryRepository.find(query, projection);
         } catch (JSONException e) {
             log.error("Cannot parse incoming query {}", q.getQueryBody(), e.getMessage());
         }
-        results = userQueryRepository.find(query, projection);
 
         return results;
     }

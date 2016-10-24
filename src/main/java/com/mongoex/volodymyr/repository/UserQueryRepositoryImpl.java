@@ -41,4 +41,11 @@ public class UserQueryRepositoryImpl implements UserQueryRepository {
         return list;
     }
 
+//    public List<DBObject> aggregate(){
+//        DB db = mongo.getDB(mongoProperties.getDatabase());
+//
+//        db.getCollection(COLLECTION_TO_QUERY).aggregate();
+//
+//    }
+
 }

@@ -6,13 +6,13 @@ mongoimport -h localhost --port 27017 -d MongoEx -c book --jsonArray --type json
 http://www.json-generator.com/
 
 [
-  '{{repeat(100000, 100000)}}',
+  '{{repeat(1000, 1000)}}',
   {
     _id: '{{objectId()}}',
     index: '{{index()}}',
     guid: '{{guid()}}',
     isActive: '{{bool()}}',
-    price: '{{floating(3, 45, 2, "$0.00")}}',
+    price: '{{floating(3, 45, 2, 0.00 )}}',
     name: '{{firstName()}} {{surname()}}',
     seller: {
         company: '{{company().toUpperCase()}}',
