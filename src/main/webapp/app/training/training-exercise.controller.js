@@ -18,6 +18,8 @@
         vm.query = null;
         vm.queryResult = [];
         $scope.saveQuery = saveQuery;
+        vm.validJsonInput = true;
+        vm.errorMessage = null;
 
         $scope.showHintButtonText = 'Show hint';
 
@@ -45,10 +47,19 @@
         }
 
         function saveQuery() {
+            vm.validJsonInput = true;
             vm.queryResult = [];
-            Query.post({queryBody: vm.query.body, exerciseNumber: $stateParams.number}, function (result) {
-                vm.queryResult = result.result;
-            });
+
+            try {
+                JSON.parse(vm.query.body);
+                Query.post({queryBody: vm.query.body, exerciseNumber: $stateParams.number}, function (result) {
+                    vm.queryResult = result.result;
+                });
+            } catch (e) {
+                vm.validJsonInput = false;
+                vm.errorMessage = e;
+                console.log(vm.errorMessage);
+            }
         }
 
         $scope.toggleHintVisibility = function () {

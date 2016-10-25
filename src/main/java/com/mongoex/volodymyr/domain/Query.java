@@ -12,7 +12,6 @@ import java.util.Objects;
 /**
  * A Query.
  */
-
 @Document(collection = "query")
 public class Query implements Serializable {
 

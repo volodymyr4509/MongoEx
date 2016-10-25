@@ -1,46 +1,51 @@
 <div ng-cloak>
-    <div class="row">
-        <div class="col-md-1">
-            <button class="btn btn-primary" ui-sref="training">Back</button>
-        </div>
-        <div class="text-center col-md-10">
-            <p class="text-large">db.book.find({{vm.query.body}})</p>
-            <!--<p class="text-huge" data-translate="training.title">Exercise!</p>-->
-        </div>
-        <div >
-            <button class="btn btn-info" ng-click="saveQuery()">Run Query</button>
-        </div>
-    </div>
-
-    <div>
-        <div class="row">
-            <div class="col-md-4">
-                <p class="text-large">{{vm.exercise.number}}.{{vm.exercise.description}}</p>
-            </div>
-            <div class="col-md-8">
-                <textarea rows="10" placeholder="Query..." class="col-md-8 match-parent"
-                          ng-model="vm.query.body"></textarea>
-            </div>
-        </div>
+    <form name="form" novalidate>
 
         <div class="row">
             <div class="col-md-4">
-                <div>
-                    <button class="btn btn-primary" ng-click="toggleHintVisibility()">{{showHintButtonText}}</button>
-                </div>
-                <div class="animate-hide bg-info" ng-show="showHint">
-                    {{vm.exercise.hint}}
-                </div>
+                <button class="btn btn-primary" ui-sref="training">Back</button>
             </div>
-            <div class="col-md-8">
-
-                <div>
-                    <pre>{{vm.queryResult | json}}</pre>
-                </div>
+            <div class="col-md-7">
+                <h2 class="text-large">db.book.find({{vm.query.body}})</h2>
             </div>
-
+            <div class="col-md-1">
+                <button class="btn btn-info" ng-click="saveQuery()">Run</button>
+            </div>
         </div>
-    </div>
 
+        <div>
+            <div class="row">
+                <div class="col-md-4">
+                    <p class="text-large">{{vm.exercise.number}}.{{vm.exercise.description}}</p>
+                </div>
+                <div class="col-md-8">
+                             <textarea rows="10" name="queryBody" placeholder="Query..." class="col-md-8 match-parent"
+                                       ng-model="vm.query.body"></textarea>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div>
+                        <button class="btn btn-primary" ng-click="toggleHintVisibility()">{{showHintButtonText}}
+                        </button>
+                    </div>
+                    <div class="animate-hide bg-info" ng-show="showHint">
+                        {{vm.exercise.hint}}
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div ng-show="vm.validJsonInput">
+                        <pre>{{vm.queryResult | json}}</pre>
+                    </div>
+                    <div ng-hide="vm.validJsonInput">
+                        <pre class="alert-warning" ng-bind="vm.errorMessage">error</pre>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
 
 </div>
